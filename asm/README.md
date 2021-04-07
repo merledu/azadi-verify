@@ -1,4 +1,5 @@
 Testing azadi (in C and assembly both) 
+
 |      Tests     |  Passed/Failed   |
 |----------------|------------------|
 | multiply       |     Passed       |
@@ -8,3 +9,4 @@ Testing azadi (in C and assembly both)
 | Discriminant   |     Failed       |
 | Fibonacci      |     Failed       |
 | Branch         |     Passed       |
+| slt            |     Passed       |
