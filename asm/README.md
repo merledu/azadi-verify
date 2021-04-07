@@ -1,4 +1,5 @@
-|TESTS           |  PPassed/Failed  |
+Testing azadi (in C and assembly both) 
+|      Tests     |  Passed/Failed   |
 |----------------|------------------|
 | multiply       |     Passed       |
 | add            |     Passed       |
