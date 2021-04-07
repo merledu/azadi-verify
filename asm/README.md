@@ -10,3 +10,5 @@ Testing azadi (in C and assembly both)
 | Fibonacci      |     Failed       |
 | Branch         |     Passed       |
 | slt            |     Passed       |
+| slti           |     Passed       |
+| slli           |     Passed       |
