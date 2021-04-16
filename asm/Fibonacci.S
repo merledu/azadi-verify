@@ -1,9 +1,9 @@
 li t6,0x400c0000
-li t0,0
-li t1,0
-li t2,1
-li t3,0
-li t4,11
+li t0,0 		#constant 
+li t1,0 		#constant 
+li t2,1			#constant 
+li t3,0			#loop counter
+li t4,11        #max fibonacci series limit   
 loop :
 beq t3,t4,else
 add t5,t2,t1
