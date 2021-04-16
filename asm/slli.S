@@ -12,6 +12,6 @@ addi s1,t6,5
 jump:
 addi s1,t6,3
 sw s1,0x10(t1)
-slli s2,s1,15
+slli s2,s1,4
 sw s2,0x10(t1)
 nop
