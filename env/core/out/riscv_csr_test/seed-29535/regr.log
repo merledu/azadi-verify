@@ -1,0 +1,5 @@
+Test binary: out/seed-29535/instr_gen/asm_tests/riscv_csr_test.0.o
+ibex uvm log : out/seed-29535/rtl_sim/riscv_csr_test.0/sim.log
+riscv_csr_test : [FAILED]
+
+0 PASSED, 1 FAILED

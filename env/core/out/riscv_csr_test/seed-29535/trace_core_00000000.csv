@@ -1,0 +1,10 @@
+pc,instr,gpr,csr,binary,mode,instr_str,operand,pad
+80000080,csrrs,a3:4010110c,,3015a6f3,,"csrrs	x13,misa,x11","a3,misa,a1",
+80000084,lui,a1:40101000,,401015b7,,"lui	x11,0x40101","a1,0x40101",
+80000088,addi,a1:40101104,,10458593,,"addi	x11,x11,260","a1,a1,260",
+8000008c,bne,,,3ad592e3,,"bne	x11,x13,80000c30","a1,a3,0xba4",
+80000c30,addi,ra:00000001,,00100093,,"addi	x1,x0,1","ra,zero,1",
+80000c34,slli,ra:00000100,,00809093,,"slli	x1,x1,0x8","ra,ra,0x8",
+80000c38,addi,ra:00000101,,00108093,,"addi	x1,x1,1","ra,ra,1",
+80000c3c,lui,sp:90000000,,90000137,,"lui	x2,0x90000","sp,0x90000",
+80000c40,addi,sp:8ffffffc,,ffc10113,,"addi	x2,x2,-4","sp,sp,-4",
