@@ -1,0 +1,27 @@
+Test binary: out/seed-27237/instr_gen/asm_tests/riscv_mmu_stress_test.0.o
+ibex uvm log : out/seed-27237/rtl_sim/riscv_mmu_stress_test.0/sim.log
+riscv_mmu_stress_test : [PASSED]
+
+ibex : out/seed-27237/rtl_sim/riscv_mmu_stress_test.0/trace_core_00000000.csv
+spike : out/seed-27237/instr_gen/spike_sim/riscv_mmu_stress_test.0.csv
+Mismatch[1]:
+ibex[364] : pc[80002540] mulhu	x21,x29,x2: s5:7e5de896 
+spike[364] : pc[ffffffff80001680] addi    s8, s8, -124: s8:80046d74 
+Mismatch[2]:
+ibex[365] : pc[80002544] c.li	x10,-1: a0:ffffffff 
+spike[365] : pc[ffffffff80001700] csrr    t3, mepc: t3:80002528 
+Mismatch[3]:
+ibex[366] : pc[8000254a] lb	x22,-1932(x2): s6:00000000 
+spike[366] : pc[ffffffff80001704] csrr    t3, mcause: t3:00000007 
+Mismatch[4]:
+ibex[367] : pc[8000254e] c.lui	x8,0x5: s0:00005000 
+spike[367] : pc[ffffffff80001708] c.li    s7, 3: s7:00000003 
+Mismatch[5]:
+ibex[368] : pc[80002550] lh	x16,1570(x2): a6:ffffc048 
+spike[368] : pc[ffffffff80001712] c.li    s7, 8: s7:00000008 
+Mismatch[467]:
+[1712] ibex : pc[800037ea] lb	x21,-11(x7): s5:ffffff80 
+91273 instructions left in trace ibex
+[FAILED]: 307 matched, 467 mismatch
+
+0 PASSED, 1 FAILED
