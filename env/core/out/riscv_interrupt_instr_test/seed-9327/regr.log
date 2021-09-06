@@ -1,0 +1,3 @@
+Test binary: out/seed-9327/instr_gen/asm_tests/riscv_interrupt_instr_test.0.o
+ibex uvm log : out/seed-9327/rtl_sim/riscv_interrupt_instr_test.0/sim.log
+0 PASSED, 1 FAILED

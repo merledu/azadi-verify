@@ -1,0 +1,9 @@
+Test binary: out/seed-4435/instr_gen/asm_tests/riscv_arithmetic_basic_test.0.o
+ibex uvm log : out/seed-4435/rtl_sim/riscv_arithmetic_basic_test.0/sim.log
+riscv_arithmetic_basic_test : [PASSED]
+
+ibex : out/seed-4435/rtl_sim/riscv_arithmetic_basic_test.0/trace_core_00000000.csv
+spike : out/seed-4435/instr_gen/spike_sim/riscv_arithmetic_basic_test.0.csv
+[PASSED]: 7941 matched
+
+1 PASSED, 0 FAILED

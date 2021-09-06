@@ -1,0 +1,5 @@
+Test binary: out/seed-19373/instr_gen/asm_tests/riscv_illegal_instr_test.0.o
+ibex uvm log : out/seed-19373/rtl_sim/riscv_illegal_instr_test.0/sim.log
+riscv_illegal_instr_test : [FAILED]
+
+0 PASSED, 1 FAILED

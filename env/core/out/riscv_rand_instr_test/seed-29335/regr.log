@@ -1,0 +1,9 @@
+Test binary: out/seed-29335/instr_gen/asm_tests/riscv_rand_instr_test.0.o
+ibex uvm log : out/seed-29335/rtl_sim/riscv_rand_instr_test.0/sim.log
+riscv_rand_instr_test : [PASSED]
+
+ibex : out/seed-29335/rtl_sim/riscv_rand_instr_test.0/trace_core_00000000.csv
+spike : out/seed-29335/instr_gen/spike_sim/riscv_rand_instr_test.0.csv
+[PASSED]: 3424 matched
+
+1 PASSED, 0 FAILED
