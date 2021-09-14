@@ -2,7 +2,7 @@
 # Licensed under the Apache License, Version 2.0, see LICENSE for details.
 # SPDX-License-Identifier: Apache-2.0
 
-GEN_DIR             := $(realpath ../../../vendor/google_riscv-dv)
+GEN_DIR             := $(realpath ../../../../../google_riscv-dv)
 TOOLCHAIN           := ${RISCV_TOOLCHAIN}
 
 # Explicitly ask for the bash shell
@@ -86,7 +86,7 @@ verb = $(if $(filter-out 0,$(VERBOSE)),,@)
 
 SHELL=/bin/bash
 
-export PRJ_DIR:= $(realpath ../../..)
+export PRJ_DIR:= $(realpath ../../../../../azadi-new/hw/vendor/lowrisc_ibex)
 
 all: sim
 
@@ -333,9 +333,9 @@ iss_sim: $(metadata)/instr_gen.iss.stamp
 # '=', rather than ':='. This means that we don't bother running the find
 # commands unless we need the compiled testbench.
 all-verilog = \
-  $(shell find ../../../rtl -name '*.v' -o -name '*.sv' -o -name '*.svh') \
-  $(shell find ../.. -name '*.v' -o -name '*.sv' -o -name '*.svh') \
-  $(shell find ../../../../pulp_fpnew/src -name '*.v' -o -name '*.sv' -o -name '*.svh')
+  $(shell find ../../../../../azadi-new/hw/vendor/lowrisc_ibex/rtl -name '*.v' -o -name '*.sv' -o -name '*.svh') \
+  $(shell find .. -name '*.v' -o -name '*.sv' -o -name '*.svh') \
+  $(shell find ../../../../../azadi-new/hw/vendor/pulp_fpnew/src -name '*.v' -o -name '*.sv' -o -name '*.svh')
 
 compile-var-deps := COMMON_OPTS SIMULATOR COV WAVES COMPILE_OPTS
 -include $(OUT-DIR)rtl_sim/.compile-vars.mk
