@@ -2,7 +2,8 @@
 # Licensed under the Apache License, Version 2.0, see LICENSE for details.
 # SPDX-License-Identifier: Apache-2.0
 
-GEN_DIR             := $(realpath ../../../../../google_riscv-dv)
+GEN_DIR             := $(realpath ${DV_AZADI}/google_riscv-dv)
+DV_DIR              := ${DV_AZADI}/azadi-verify/env/core/vendor/core_ibex
 TOOLCHAIN           := ${RISCV_TOOLCHAIN}
 
 # Explicitly ask for the bash shell
@@ -43,7 +44,7 @@ ISS_OPTS            :=
 ISA                 := rv32imcb
 # Test name (default: full regression)
 TEST                := all
-TESTLIST            := riscv_dv_extension/testlist.yaml
+TESTLIST            := ${DV_DIR}/riscv_dv_extension/testlist.yaml
 # Verbose logging
 VERBOSE             :=
 # Number of iterations for each test, assign a non-zero value to override the
@@ -54,7 +55,7 @@ LSF_CMD             :=
 # Generator timeout limit in seconds
 TIMEOUT             := 1800
 # Privileged CSR YAML description file
-CSR_FILE            := riscv_dv_extension/csr_description.yaml
+CSR_FILE            := ${DV_DIR}/riscv_dv_extension/csr_description.yaml
 # Pass/fail signature address at the end of test
 SIGNATURE_ADDR      := 8ffffffc
 
@@ -86,9 +87,14 @@ verb = $(if $(filter-out 0,$(VERBOSE)),,@)
 
 SHELL=/bin/bash
 
-export PRJ_DIR:= $(realpath ../../../../../azadi-new/hw/vendor/lowrisc_ibex)
+export PRJ_DIR:= ${DV_AZADI}/azadi-new/hw/vendor/lowrisc_ibex
 
 all: sim
+  $(info $$GEN_DIR is [${GEN_DIR}])
+  $(info $$DV_DIR is [${DV_DIR}])
+  $(info $$OUT-SEED is [${OUT-SEED}])
+  $(info $$PRJ_DIR is [${PRJ_DIR}])
+  $(shell cp ${DV_DIR}/ibex_dv.f .)
 
 instr: iss_sim
 
@@ -113,7 +119,7 @@ CSR_OPTS=--csr_yaml=${CSR_FILE} \
          --isa="${ISA}" \
          --end_signature_addr=${SIGNATURE_ADDR}
 
-RISCV_DV_OPTS=--custom_target=riscv_dv_extension \
+RISCV_DV_OPTS=--custom_target=${DV_DIR}/riscv_dv_extension \
               --isa="${ISA}" \
               --mabi=ilp32 \
 
@@ -145,7 +151,7 @@ sim-cfg-mk = $(OUT-DIR).sim-cfg.mk
 # MAKE_RESTARTS, which is defined on re-runs. Phew!
 ifndef MAKE_RESTARTS
 $(sim-cfg-mk): FORCE | $(OUT-DIR)
-	@./sim_makefrag_gen.py $(SIMULATOR) $(IBEX_CONFIG) $(PRJ_DIR) $@
+	${DV_DIR}/sim_makefrag_gen.py $(SIMULATOR) $(IBEX_CONFIG) $(PRJ_DIR) $@
 endif
 
 include $(sim-cfg-mk)
@@ -333,9 +339,9 @@ iss_sim: $(metadata)/instr_gen.iss.stamp
 # '=', rather than ':='. This means that we don't bother running the find
 # commands unless we need the compiled testbench.
 all-verilog = \
-  $(shell find ../../../../../azadi-new/hw/vendor/lowrisc_ibex/rtl -name '*.v' -o -name '*.sv' -o -name '*.svh') \
-  $(shell find .. -name '*.v' -o -name '*.sv' -o -name '*.svh') \
-  $(shell find ../../../../../azadi-new/hw/vendor/pulp_fpnew/src -name '*.v' -o -name '*.sv' -o -name '*.svh')
+  $(shell find ${PRJ_DIR}/rtl -name '*.v' -o -name '*.sv' -o -name '*.svh') \
+  $(shell find $(realpath ${DV_DIR}/..) -name '*.v' -o -name '*.sv' -o -name '*.svh') \
+  $(shell find $(realpath ${PRJ_DIR}/../pulp_fpnew/src) -name '*.v' -o -name '*.sv' -o -name '*.svh')
 
 compile-var-deps := COMMON_OPTS SIMULATOR COV WAVES COMPILE_OPTS
 -include $(OUT-DIR)rtl_sim/.compile-vars.mk
@@ -349,13 +355,13 @@ lsf-arg := $(if $(LSF_CMD),--lsf_cmd="$(LSF_CMD)",)
 
 $(OUT-DIR)rtl_sim/.compile.stamp: \
   $(compile-vars-prereq) $(all-verilog) $(risc-dv-files) \
-  sim.py yaml/rtl_simulation.yaml \
+  ${DV_DIR}/sim.py ${DV_DIR}/yaml/rtl_simulation.yaml \
   | $(OUT-DIR)rtl_sim
-	$(verb)./sim.py \
+	$(verb)${DV_DIR}/sim.py \
 	 --o=$(OUT-DIR) \
 	 --steps=compile \
 	 ${COMMON_OPTS} \
-	 --simulator="${SIMULATOR}" --simulator_yaml=yaml/rtl_simulation.yaml \
+	 --simulator="${SIMULATOR}" --simulator_yaml=${DV_DIR}/yaml/rtl_simulation.yaml \
 	 $(cov-arg) $(wave-arg) $(lsf-arg) \
 	 --cmp_opts="${COMPILE_OPTS}"
 	$(call dump-vars,$(OUT-DIR)rtl_sim/.compile-vars.mk,comp,$(compile-var-deps))
@@ -386,12 +392,12 @@ $(metadata)/rtl_sim.compile.stamp: \
 $(metadata)/rtl_sim.run.stamp: \
   $(metadata)/rtl_sim.compile.stamp \
   $(metadata)/instr_gen.compile.stamp $(TESTLIST) \
-  sim.py yaml/rtl_simulation.yaml
-	$(verb)./sim.py \
+  ${DV_DIR}/sim.py ${DV_DIR}/yaml/rtl_simulation.yaml
+	$(verb)${DV_DIR}/sim.py \
 	 --o=$(OUT-SEED) \
 	 --steps=sim \
 	 ${TEST_OPTS} \
-	 --simulator="${SIMULATOR}" --simulator_yaml=yaml/rtl_simulation.yaml \
+	 --simulator="${SIMULATOR}" --simulator_yaml=${DV_DIR}/yaml/rtl_simulation.yaml \
 	 $(cov-arg) $(wave-arg) $(lsf-arg) \
 	 --sim_opts="+signature_addr=${SIGNATURE_ADDR} ${SIM_OPTS}"
 	@touch $@
@@ -405,7 +411,7 @@ $(OUT-SEED)/regr.log: \
   $(metadata)/instr_gen.iss.stamp \
   $(metadata)/rtl_sim.run.stamp $(TESTLIST)
 	$(verb)rm -f $@
-	$(verb)./sim.py \
+	$(verb)${DV_DIR}/sim.py \
      --o=$(OUT-SEED) \
      --steps=compare \
      ${TEST_OPTS} \
@@ -429,7 +435,7 @@ fcov:
 # Merge all output coverage directories into the <out>/rtl_sim directory
 cov:
 	$(verb)rm -rf $(OUT-DIR)rtl_sim/test.vdb
-	$(verb)./sim.py \
+	$(verb)${DV_DIR}/sim.py \
 		--steps=cov \
 		${TEST_OPTS} \
 		--simulator="${SIMULATOR}" \
