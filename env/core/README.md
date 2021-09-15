@@ -11,7 +11,7 @@ The simulator that we used was spike. A test can be run by using the makefile.
 core_ibex]$ make \
 > TEST=riscv_machine_mode_rand_test \
 > ITERATIONS=1 \
-> SIMULATOR=xxlm
+> SIMULATOR=xlm
 ```
 The output folder is a ./out/seed-[seed value]/rtl_sim/[test name].[seed value] which has the following files.
 
