@@ -4,7 +4,7 @@ session regr {
 };
  
 group tests {
-  run_script: "$RUN_ENV(MY_WORK_AREA)/my_vm_run_script.sh ";
+  run_script: "$RUN_ENV(MY_WORK_AREA)/scripts/my_vm_run_script.sh ";
   
   test riscv_arithmetic_basic_test {
     sv_seed: 4435;
