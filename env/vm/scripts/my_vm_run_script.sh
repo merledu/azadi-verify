@@ -10,4 +10,4 @@ fi
 
 echo FORWARD_SEED=$SEED
 
-make -f $AZADI_ROOT/hw/vendor/lowrisc_ibex/dv/uvm/core_ibex/Makefile TEST=$BRUN_TEST_NAME SEED=$SEED
+make -f $DV_AZADI/azadi-verify/Makefile TEST=$BRUN_TEST_NAME SEED=$SEED ITERATIONS=1
