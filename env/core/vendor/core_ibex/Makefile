@@ -2,8 +2,9 @@
 # Licensed under the Apache License, Version 2.0, see LICENSE for details.
 # SPDX-License-Identifier: Apache-2.0
 
-GEN_DIR             := $(realpath ${DV_AZADI}/google_riscv-dv)
-DV_DIR              := ${DV_AZADI}/azadi-verify/env/core/vendor/core_ibex
+export GEN_DIR:= $(realpath ${DV_AZADI}/google_riscv-dv)
+export DV_DIR:= ${DV_AZADI}/azadi-verify/env/core/vendor/core_ibex
+
 TOOLCHAIN           := ${RISCV_TOOLCHAIN}
 
 # Explicitly ask for the bash shell
@@ -66,7 +67,7 @@ PMP_REGIONS         := 16
 # PMP Granularity
 PMP_GRANULARITY     := 0
 
-IBEX_CONFIG         := experimental-maxperf-pmp-bmfull-icache
+IBEX_CONFIG         := experimental-floating-point
 
 # TODO(udinator) - might need options for SAIL/Whisper/Spike
 ifeq (${ISS},ovpsim)
@@ -88,6 +89,7 @@ verb = $(if $(filter-out 0,$(VERBOSE)),,@)
 SHELL=/bin/bash
 
 export PRJ_DIR:= ${DV_AZADI}/azadi-new/hw/vendor/lowrisc_ibex
+export FPU_DIR:= ${DV_AZADI}/azadi-new/hw/vendor/pulp_fpnew
 
 all: sim
   $(info $$GEN_DIR is [${GEN_DIR}])
@@ -341,7 +343,7 @@ iss_sim: $(metadata)/instr_gen.iss.stamp
 all-verilog = \
   $(shell find ${PRJ_DIR}/rtl -name '*.v' -o -name '*.sv' -o -name '*.svh') \
   $(shell find $(realpath ${DV_DIR}/..) -name '*.v' -o -name '*.sv' -o -name '*.svh') \
-  $(shell find $(realpath ${PRJ_DIR}/../pulp_fpnew/src) -name '*.v' -o -name '*.sv' -o -name '*.svh')
+  $(shell find $(realpath ${FPU_DIR}/src) -name '*.v' -o -name '*.sv' -o -name '*.svh')
 
 compile-var-deps := COMMON_OPTS SIMULATOR COV WAVES COMPILE_OPTS
 -include $(OUT-DIR)rtl_sim/.compile-vars.mk

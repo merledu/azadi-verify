@@ -10,8 +10,8 @@ import re
 import sys
 
 _IBEX_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__),
-                                           '../../../..'))
-_DV_SCRIPTS = os.path.join(_IBEX_ROOT, 'vendor/google_riscv-dv/scripts')
+                                           '../../../../../../azadi-new/hw/vendor/lowrisc_ibex'))
+_DV_SCRIPTS = os.path.join(_IBEX_ROOT, '../../../../google_riscv-dv/scripts')
 _OLD_SYS_PATH = sys.path
 
 # Import riscv_trace_csv and lib from _DV_SCRIPTS before putting sys.path back
