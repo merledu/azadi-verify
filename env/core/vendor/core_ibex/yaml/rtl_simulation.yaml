@@ -151,7 +151,10 @@
               -l <out>/compile.log
               -xmlibdirpath <out>
               <cmp_opts>
-              <wave_opts>"
+              <wave_opts>
+              <cov_opts>"
+    cov_opts: >
+      -coverage all -covoverwrite -covdut ibex_core_tracing
     wave_opts: >
       -access rwc -linedebug
   sim:
@@ -169,6 +172,9 @@
            -nokey
            <sim_opts>
            <wave_opts>
+           <cov_opts>
+    cov_opts: >
+      -covworkdir <sim_dir>
     wave_opts: >
       -input @"database -open <sim_dir>/waves -shm -default"
       -input @"probe -create core_ibex_tb_top -all -depth all -variables"
