@@ -42,7 +42,7 @@ ISS                 := spike
 # ISS runtime options
 ISS_OPTS            :=
 # ISA
-ISA                 := rv32imcb
+ISA                 := rv32imfdc
 # Test name (default: full regression)
 TEST                := all
 TESTLIST            := ${DV_DIR}/riscv_dv_extension/testlist.yaml

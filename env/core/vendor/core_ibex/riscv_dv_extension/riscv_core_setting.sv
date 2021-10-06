@@ -20,23 +20,6 @@
 // XLEN
 parameter int XLEN = 32;
 
-// GPR setting
-parameter int NUM_FLOAT_GPR = 0;
-parameter int NUM_GPR = 32;
-parameter int NUM_VEC_GPR = 0;
-
-// Vector extension parameters - not used in Ibex
-parameter int VECTOR_EXTENSION_ENABLE = 0;
-parameter int VLEN = 512;
-parameter int ELEN = 64;
-parameter int SLEN = 64;
-parameter int VELEN = 4;
-parameter int SELEN = 8;
-parameter int MAX_LMUL = 8;
-
-// Number of harts
-parameter int NUM_HARTS = 1;
-
 // Parameter for SATP mode, set to BARE if address translation is not supported
 parameter satp_mode_t SATP_MODE = BARE;
 
@@ -48,11 +31,8 @@ privileged_mode_t supported_privileged_mode[] = {MACHINE_MODE, USER_MODE};
 // FENCE.I is intentionally treated as illegal instruction by ibex core
 riscv_instr_name_t unsupported_instr[] = {FENCE_I};
 
-// Specify whether processor supports unaligned loads and stores
-bit support_unaligned_load_store = 1'b1;
-
 // ISA supported by the processor
-riscv_instr_group_t supported_isa[$] = {RV32I, RV32M, RV32C, RV32B};
+riscv_instr_group_t supported_isa[$] = {RV32I, RV32M, RV32C, RV32F, RV32FC};
 
 // Interrupt mode support
 mtvec_mode_t supported_interrupt_mode[$] = {VECTORED};
@@ -73,9 +53,46 @@ bit support_umode_trap = 0;
 // Support sfence.vma instruction
 bit support_sfence = 0;
 
-//-----------------------------------------------------------------------------
+// Support unaligned load / store
+bit support_unaligned_load_store = 1'b1;
+
+// GPR setting
+parameter int NUM_FLOAT_GPR = 32;
+parameter int NUM_GPR = 32;
+parameter int NUM_VEC_GPR = 0;
+
+// ----------------------------------------------------------------------------
+// Vector extension configuration
+// ----------------------------------------------------------------------------
+
+// Parameter for vector extension
+parameter int VECTOR_EXTENSION_ENABLE = 0;
+
+parameter int VLEN = 512;
+
+// Maximum size of a single vector element
+parameter int ELEN = 64;
+parameter int SLEN = 64;
+
+// Minimum size of a sub-element, which must be at most 8-bits.
+parameter int SELEN = 8;
+
+// Maximum size of a single vector element (encoded in vsew format)
+parameter int VELEN = 4;
+
+// Maxium LMUL supported by the core
+parameter int MAX_LMUL = 8;
+
+// ----------------------------------------------------------------------------
+// Multi-harts configuration
+// ----------------------------------------------------------------------------
+
+// Number of harts
+parameter int NUM_HARTS = 1;
+
+// ----------------------------------------------------------------------------
 // Kernel section setting, used by supervisor mode programs
-//-----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 // Number of kernel data pages
 int num_of_kernel_data_pages = 0;
@@ -101,11 +118,11 @@ const privileged_reg_t implemented_csr[] = {
     MHARTID,          // Hardware thread ID
     MSTATUS,          // Machine status
     MISA,             // ISA and extensions
+    MIE,              // Machine interrupt-enable register
     MTVEC,            // Machine trap-handler base address
     MEPC,             // Machine exception program counter
     MCAUSE,           // Machine trap cause
     MTVAL,            // Machine bad address or instruction
-    MIE,              // Machine interrupt enable
     MIP,              // Machine interrupt pending
     MCYCLE,           // Machine cycle counter (lower 32 bits)
     MCYCLEH,          // Machine cycle counter (upper 32 bits)
@@ -174,19 +191,19 @@ const bit [11:0] custom_csr[] = {
   12'h7C1     // secureseed - Security feature random seed register
 };
 
-// --------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Supported interrupt/exception setting, used for functional coverage
-// --------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 const interrupt_cause_t implemented_interrupt[] = {
-  M_SOFTWARE_INTR,
-  M_TIMER_INTR,
-  M_EXTERNAL_INTR
+    M_SOFTWARE_INTR,
+    M_TIMER_INTR,
+    M_EXTERNAL_INTR
 };
 const exception_cause_t implemented_exception[] = {
-  INSTRUCTION_ACCESS_FAULT,
-  ILLEGAL_INSTRUCTION,
-  BREAKPOINT,
-  LOAD_ACCESS_FAULT,
-  STORE_AMO_ACCESS_FAULT,
-  ECALL_MMODE
+    INSTRUCTION_ACCESS_FAULT,
+    ILLEGAL_INSTRUCTION,
+    BREAKPOINT,
+    LOAD_ACCESS_FAULT,
+    STORE_AMO_ACCESS_FAULT,
+    ECALL_MMODE
 };
