@@ -1,10 +1,10 @@
-Testing azadi (in C and assembly both) 
+Testing Azadi SoC (in C and assembly both) 
 
 |      Tests     |  Passed/Failed   |      Ports     |  Expected output   |  Actual output   |
 |----------------|------------------|----------------|--------------------|------------------|
-| add            |     Passed       |      gpio_o    |      0x0CH         |     0x0CH        |  
+| add            |     Passed       |      gpio_o    |      0x0CH         |     0x0CH        |
 | addi           |     Passed       |      gpio_o    |      0x06H         |     0x06H        |
-| Branch         |     Passed       |      gpio_o    |      0x0DH         |     0x0DH        | 
+| Branch         |     Passed       |      gpio_o    |      0x0DH         |     0x0DH        |
 | Discriminant   |     Failed       |      gpio_o    | 0x02H(two solution)|       --         |
 | Fibonacci      |     Failed       |      gpio_o    |  Fibonacci series  |       --         |
 | jal            |     Passed       |      gpio_o    |      0x05H         |     0x05H        |
