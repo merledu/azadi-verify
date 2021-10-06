@@ -1,4 +1,4 @@
-Testing Floating Point Unit of azadi in assembly.
+Testing Floating Point Unit of Azadi SoC in assembly.
 
 |        Tests       |  Passed/Failed   |  Expected output   |  Actual output   |
 |--------------------|------------------|--------------------|------------------|

@@ -3,7 +3,10 @@ __pycache__
 
 
 # The default output directory
-out/*
+out*
+cov_work
+*.log
+*.key
 
 # Log files for vManager
 env/vm/*.log
