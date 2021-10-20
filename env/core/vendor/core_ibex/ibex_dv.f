@@ -113,4 +113,6 @@ ${DV_DIR}/env/core_ibex_rvfi_if.sv
 ${DV_DIR}/env/core_ibex_csr_if.sv
 ${DV_DIR}/env/core_ibex_env_pkg.sv
 ${DV_DIR}/tests/core_ibex_test_pkg.sv
+${DV_DIR}/fcov/core_ibex_fcov_if.sv
+${DV_DIR}/fcov/core_ibex_fcov_bind.sv
 ${DV_DIR}/tb/core_ibex_tb_top.sv
