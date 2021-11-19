@@ -101,6 +101,8 @@ module core_ibex_tb_top;
     .instr_addr_o   (instr_mem_vif.addr   ),
     .instr_rdata_i  (instr_mem_vif.rdata  ),
     .instr_err_i    (instr_mem_vif.error  ),
+    .alert_minor_o  (                     ),
+    .alert_major_o  (                     ),
     .core_sleep_o   (dut_if.core_sleep    )
   );
 
