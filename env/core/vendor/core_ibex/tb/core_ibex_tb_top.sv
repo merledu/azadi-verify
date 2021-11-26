@@ -182,6 +182,13 @@ module core_ibex_tb_top;
     uvm_config_db#(virtual ibex_mem_intf)::set(null, "*instr_if_response*", "vif", instr_mem_vif);
     uvm_config_db#(virtual irq_if)::set(null, "*", "vif", irq_vif);
     run_test();
+
+    /////////////////////////////////
+    // Sampling functional coverage//
+    /////////////////////////////////
+    
+    // For Alu operations
+    dut.u_ibex_core.id_stage_i.decoder_i.alu_cg_h.sample();
   end
 
 endmodule
