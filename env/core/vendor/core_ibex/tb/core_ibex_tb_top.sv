@@ -189,6 +189,8 @@ module core_ibex_tb_top;
     
     // For Alu operations
     dut.u_ibex_core.id_stage_i.decoder_i.alu_cg_h.sample();
+    // For Mul/div operations
+    dut.u_ibex_core.id_stage_i.decoder_i.mul_div_cg_h.sample();
   end
 
 endmodule
