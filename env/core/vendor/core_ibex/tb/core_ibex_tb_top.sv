@@ -186,13 +186,14 @@ module core_ibex_tb_top;
     /////////////////////////////////
     // Sampling functional coverage//
     /////////////////////////////////
-    
+    `ifdef AZADI_FC
     // For Alu operations
     dut.u_ibex_core.id_stage_i.decoder_i.alu_cg_h.sample();
     // For Mul/div operations
     dut.u_ibex_core.id_stage_i.decoder_i.mul_div_cg_h.sample();
     // For FPU operations
     dut.u_ibex_core.id_stage_i.decoder_i.fpu_cg_h.sample();
+    `endif
   end
 
 endmodule
