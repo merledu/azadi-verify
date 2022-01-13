@@ -1,3 +1,32 @@
+#/////////////////////////////////////////////////////////////////////////////////////////////////////
+# Company:        MICRO-ELECTRONICS RESEARCH LABORATORY                                             //
+#                                                                                                   //
+# Engineers:      Auringzaib Sabir - Verification                                                   //
+#                                                                                                   //
+# Additional contributions by:                                                                      //
+#                                                                                                   //
+# Create Date:    09-JAN-2022                                                                       //
+# Design Name:    AZADI CORE                                                                        //
+# Module Name:    all_args_rand_test.py                                                             //
+# Project Name:   Verification of RISC-V BASED CORE - AZADI                                         //
+# Language:       Python & YAML                                                                     //
+#                                                                                                   //
+# Description:                                                                                      //
+#         This python code randomize the run time arguments that are present in                     //
+#         all_args_rand_test.yaml. RISC-V instruction generator uses these run time arguments       //
+#         to generate different kinds of instruction. Furthermore UVM Random test are running on    //
+#         random test seed.                                                                         //
+#                                                                                                   //
+#         How to run?                                                                               //
+#         Go to path ../azadi-verify/env/core/vendor/core_ibex/riscv_dv_extension                   //
+#         Excecute the following command                                                            //
+#         python3 all_args_rand_test.py                                                             //
+#                                                                                                   //
+# Revision Date:                                                                                    //
+#                                                                                                   //
+#/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 from random import randint
 import os
 
@@ -204,5 +233,6 @@ def main():
 
 if __name__ == '__main__':
     main()  
+
 
 
