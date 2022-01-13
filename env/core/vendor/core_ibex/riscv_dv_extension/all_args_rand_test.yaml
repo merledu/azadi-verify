@@ -1,0 +1,34 @@
+
+
+- test: all_args_rand_test
+  description: >
+    This test will select all arguments randomly
+  gen_opts: >
+    +instr_cnt=6667
+    +num_of_sub_program=5
+    +num_of_tests=73
+    +no_fence=0
+    +no_data_page=0
+    +no_branch_jump=0
+    +boot_mode=m
+    +enable_unaligned_load_store=1
+    +no_ebreak=0
+    +no_wfi=1
+    +set_mstatus_tw=0
+    +no_dret=1
+    +no_csr_instr=0
+    +enable_illegal_csr_instruction=0
+    +enable_access_invalid_csr_level=1
+    +enable_misaligned_instr=1
+    +disable_compressed_instr=0
+    +enable_interrupt=1
+    +enable_ebreak_in_debug_rom=0
+    +set_dcsr_ebreak=0
+    +enable_debug_single_step=1
+    +enable_floating_point=0
+    +no_load_store=1
+    +fix_sp=0
+    +set_mstatus_mprv=1
+  iterations: 10
+  gen_test: riscv_instr_base_test
+  rtl_test: core_ibex_base_test
