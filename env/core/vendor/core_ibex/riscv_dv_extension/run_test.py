@@ -36,7 +36,6 @@ print("ROOT_DIR =", ROOT_DIR)
 def main():
     seed = sys.argv
     print ("Seed from the command line = ", seed[1])
-    #test_list = "/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/out/seed-"+str(seed[1])+"/all_args_rand_test.yaml"
     test_list = ROOT_DIR+"/out/seed-"+str(seed[1])+"/all_args_rand_test.yaml"
     print("test_list=",test_list)
     cmd = "make TEST=all_args_rand_test ITERATIONS=1 "+"TESTLIST="+test_list+" SEED="+str(seed[1])+" ISA=rv32imfdc COV=1 WAVES=1"
@@ -45,7 +44,6 @@ def main():
     # Changing directory to execute the 'make command'
     print("Printing Current working directory")
     print (os.getcwd())
-    #change_path = "/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/"
     change_path = ROOT_DIR+"/"
     os.chdir(change_path)
     print("Changed directory is")
