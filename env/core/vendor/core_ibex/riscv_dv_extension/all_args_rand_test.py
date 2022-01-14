@@ -29,6 +29,9 @@
 
 from random import randint
 import os
+# print(__file__)
+ROOT_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), ".."))
+print("ROOT_DIR =", ROOT_DIR)
 
 def search_multiple_strings_in_file(file_name, list_of_strings):
     """Get line from the file along with line numbers, which contains any string from the list"""
@@ -180,7 +183,10 @@ def copy_in_latest_test():
      import shutil
      alist={}
      now = time.time()
-     directory=os.path.join("/home","/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/out")
+     path = ROOT_DIR+"/out"
+     print("path=",path)
+     #directory=os.path.join("/home","/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/out")
+     directory=os.path.join("/home",path)
      os.chdir(directory)
      for file in os.listdir("."):
          if os.path.isdir(file):
@@ -194,15 +200,18 @@ def copy_in_latest_test():
      print ("newest directory is ", latest)
      os.chdir(latest)
      # For copying the all_args_rand_test.yaml in the latest out/seed directory made for specific test
-     src_path = r"/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/riscv_dv_extension/all_args_rand_test.yaml"
+     #src_path = r"/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/riscv_dv_extension/all_args_rand_test.yaml"
+     src_path = ROOT_DIR+"/riscv_dv_extension/all_args_rand_test.yaml"
      dst_path = latest + "/all_args_rand_test.yaml"
      print ("src_path = " , src_path)
      print ("dst_path = " , dst_path)
      shutil.copy(src_path, dst_path)
      print('Copied "all_args_rand_test.yaml"')
      # For copying the run_test.py in the latest out/seed directory made for specific test
-     src_path = r"/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/riscv_dv_extension/run_test.py"
+     #src_path = r"/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/riscv_dv_extension/run_test.py"
+     src_path = ROOT_DIR+"/riscv_dv_extension/run_test.py"
      dst_path = latest + "/run_test.py"
+     print ("src_path = " , src_path)
      print ("dst_path = " , dst_path)
      shutil.copy(src_path, dst_path)
      print('Copied "run_test.py"')
@@ -215,7 +224,9 @@ def main():
         #value = '    +instr_cnt=' + str(randint(0,10))
         #replace_line('all_args_rand_test.yaml', elem[1],value)
     
-    test_list = r"/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/riscv_dv_extension/all_args_rand_test.yaml"
+    #test_list = r"/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/riscv_dv_extension/all_args_rand_test.yaml"
+    test_list = ROOT_DIR+"/riscv_dv_extension/all_args_rand_test.yaml"
+    print("testlist=",test_list)
     cmd = "make TEST=all_args_rand_test ITERATIONS=1 "+"TESTLIST="+test_list+" ISA=rv32imfdc COV=1 WAVES=1"
     print("Command to run = ", cmd)
 
@@ -223,7 +234,8 @@ def main():
     # Changing directory to execute the 'make command'
     print("Printing Current working directory")
     print (os.getcwd())
-    change_path = "/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/"
+    #change_path = "/home/asabir/regression_ibex/azadi-verify/env/core/vendor/core_ibex/"
+    change_path = ROOT_DIR+"/"
     os.chdir(change_path)
     print("Changed directory is")
     print (os.getcwd())
