@@ -207,6 +207,8 @@ module core_ibex_tb_top;
     dut.u_ibex_core.id_stage_i.decoder_i.alu_op_b_mux_sel_cg_h.sample();
     // Sampling coverage for immediate operand b selection present in decoder
     dut.u_ibex_core.id_stage_i.decoder_i.imm_operand_b_sel_cg_h.sample();
+    // Sampling coverage for bit manipulation present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.bit_manipulation_cg_h.sample();
     `endif
   end
 
