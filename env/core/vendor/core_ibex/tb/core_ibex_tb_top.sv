@@ -182,6 +182,34 @@ module core_ibex_tb_top;
     uvm_config_db#(virtual ibex_mem_intf)::set(null, "*instr_if_response*", "vif", instr_mem_vif);
     uvm_config_db#(virtual irq_if)::set(null, "*", "vif", irq_vif);
     run_test();
+
+    /////////////////////////////////
+    // Sampling functional coverage//
+    /////////////////////////////////
+    `ifdef AZADI_FC
+    // For Alu operations
+    dut.u_ibex_core.id_stage_i.decoder_i.alu_cg_h.sample();
+    // For Mul/div operations
+    dut.u_ibex_core.id_stage_i.decoder_i.mul_div_cg_h.sample();
+    // For FPU operations
+    dut.u_ibex_core.id_stage_i.decoder_i.fpu_cg_h.sample();
+    // Sampling coverage for covergroup opcode_cg present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.opcode_cg_h.sample();
+    // Sampling coverage for covergroup opcode_alu_cg present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.opcode_alu_cg_h.sample();
+    // Sampling coverage for operend a selection present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.bt_operand_a_sel_cg_h.sample();
+    // Sampling coverage for immediate operand b selection present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.bt_operand_b_sel_cg_h.sample();
+    // Sampling coverage for alu operand a selection present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.alu_op_a_mux_sel_cg_h.sample();
+    // Sampling coverage for alu operand b selection present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.alu_op_b_mux_sel_cg_h.sample();
+    // Sampling coverage for immediate operand b selection present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.imm_operand_b_sel_cg_h.sample();
+    // Sampling coverage for bit manipulation present in decoder
+    dut.u_ibex_core.id_stage_i.decoder_i.bit_manipulation_cg_h.sample();
+    `endif
   end
 
 endmodule

@@ -150,6 +150,7 @@
               -elaborate
               -l <out>/compile.log
               -xmlibdirpath <out>
+              +define+AZADI_FC
               <cmp_opts>
               <wave_opts>
               <cov_opts>"
