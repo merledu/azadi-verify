@@ -197,10 +197,14 @@ module core_ibex_tb_top;
     dut.u_ibex_core.id_stage_i.decoder_i.opcode_cg_h.sample();
     // Sampling coverage for covergroup opcode_alu_cg present in decoder
     dut.u_ibex_core.id_stage_i.decoder_i.opcode_alu_cg_h.sample();
-    // Sampling coverage for operend a selection present in decoder
-    dut.u_ibex_core.id_stage_i.decoder_i.bt_operand_a_sel_cg_h.sample();
-    // Sampling coverage for immediate operand b selection present in decoder
-    dut.u_ibex_core.id_stage_i.decoder_i.bt_operand_b_sel_cg_h.sample();
+    
+    `ifdef BRANCH_TARGET_ALU_ENABLED
+      // Sampling coverage for operend a selection present in decoder
+      dut.u_ibex_core.id_stage_i.decoder_i.bt_operand_a_sel_cg_h.sample();
+      // Sampling coverage for immediate operand b selection present in decoder
+      dut.u_ibex_core.id_stage_i.decoder_i.bt_operand_b_sel_cg_h.sample();
+    `endif  // BRANCH_TARGET_ALU_ENABLED
+    
     // Sampling coverage for alu operand a selection present in decoder
     dut.u_ibex_core.id_stage_i.decoder_i.alu_op_a_mux_sel_cg_h.sample();
     // Sampling coverage for alu operand b selection present in decoder
