@@ -151,6 +151,8 @@
               -l <out>/compile.log
               -xmlibdirpath <out>
               +define+AZADI_FC
+              +define+BRANCH_TARGET_ALU_ENABLED
+              +define+BIT_MANIPULATION_ENABLED
               <cmp_opts>
               <wave_opts>
               <cov_opts>"
