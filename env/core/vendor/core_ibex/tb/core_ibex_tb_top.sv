@@ -216,6 +216,8 @@ module core_ibex_tb_top;
         // Sampling coverage for bit manipulation present in decoder
         dut.u_ibex_core.id_stage_i.decoder_i.bit_manipulation_cg_h.sample();
       `endif  // BIT_MANIPULATION_ENABLED
+      // Sampling coverage for csr operations
+      dut.u_ibex_core.id_stage_i.decoder_i.csr_operations_cg_h.sample();
     
     `endif
   end
