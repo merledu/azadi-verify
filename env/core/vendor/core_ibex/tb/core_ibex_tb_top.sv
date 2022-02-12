@@ -218,6 +218,9 @@ module core_ibex_tb_top;
       `endif  // BIT_MANIPULATION_ENABLED
       // Sampling coverage for csr operations
       dut.u_ibex_core.id_stage_i.decoder_i.csr_operations_cg_h.sample();
+      // Sampling coverage for privileged modes
+      dut.u_ibex_core.id_stage_i.priv_mode_cg_h.sample();
+      
     
     `endif
   end
