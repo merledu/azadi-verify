@@ -222,6 +222,8 @@ module core_ibex_tb_top;
       dut.u_ibex_core.id_stage_i.priv_mode_cg_h.sample();
       // Sampling coverage for dcsr.xdebugver fields
       dut.u_ibex_core.cs_registers_i.dcsr_xdebugver_cg_h.sample();
+      // Sampling coverage for dcsr_d fields
+      dut.u_ibex_core.cs_registers_i.dcsr_d_xdebugver_cg_h.sample();
     `endif
   end
 
