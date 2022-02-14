@@ -228,6 +228,10 @@ module core_ibex_tb_top;
       dut.u_ibex_core.cs_registers_i.m_status_reg_cg_h.sample();
       // Sampling coverage for CPU control register field
       dut.u_ibex_core.cs_registers_i.cpu_ctrl_cg_h.sample();
+      // Sampling coverage for CPU control register field
+      dut.u_ibex_core.wb_stage_i.wb_instr_type_cg_h.sample();
+      // Sampling coverage for regfile write data selection
+      dut.u_ibex_core.id_stage_i.decoder_i.rf_wd_sel_cg_h.sample();
     `endif
   end
 
