@@ -226,6 +226,8 @@ module core_ibex_tb_top;
       dut.u_ibex_core.cs_registers_i.dcsr_d_xdebugver_cg_h.sample();
       // Sampling coverage for mstatus register
       dut.u_ibex_core.cs_registers_i.m_status_reg_cg_h.sample();
+      // Sampling coverage for CPU control register field
+      dut.u_ibex_core.cs_registers_i.cpu_ctrl_cg_h.sample();
     `endif
   end
 
