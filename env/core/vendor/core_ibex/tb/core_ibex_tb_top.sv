@@ -238,6 +238,8 @@ module core_ibex_tb_top;
       dut.u_ibex_core.id_stage_i.exc_pc_mux_cg_h.sample();
       // Sampling coverage for interrupt signals
       dut.u_ibex_core.id_stage_i.irqs_cg_h.sample();
+      // Sampling coverage for exception causes
+      dut.u_ibex_core.id_stage_i.exc_cause_cg_h.sample();
     `endif
   end
 
