@@ -242,6 +242,8 @@ module core_ibex_tb_top;
       dut.u_ibex_core.id_stage_i.exc_cause_cg_h.sample();
       // Sampling coverage for debug causes
       dut.u_ibex_core.id_stage_i.debug_cause_cg_h.sample();
+      // Sampling coverage for csr register
+      dut.u_ibex_core.cs_registers_i.csr_num_cg_h.sample();
     `endif
   end
 
