@@ -240,6 +240,8 @@ module core_ibex_tb_top;
       dut.u_ibex_core.id_stage_i.irqs_cg_h.sample();
       // Sampling coverage for exception causes
       dut.u_ibex_core.id_stage_i.exc_cause_cg_h.sample();
+      // Sampling coverage for debug causes
+      dut.u_ibex_core.id_stage_i.debug_cause_cg_h.sample();
     `endif
   end
 
