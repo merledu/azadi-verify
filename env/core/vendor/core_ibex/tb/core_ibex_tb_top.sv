@@ -218,7 +218,40 @@ module core_ibex_tb_top;
       `endif  // BIT_MANIPULATION_ENABLED
       // Sampling coverage for csr operations
       dut.u_ibex_core.id_stage_i.decoder_i.csr_operations_cg_h.sample();
-    
+      // Sampling coverage for privileged modes
+      dut.u_ibex_core.id_stage_i.priv_mode_cg_h.sample();
+      // Sampling coverage for dcsr.xdebugver fields
+      dut.u_ibex_core.cs_registers_i.dcsr_xdebugver_cg_h.sample();
+      // Sampling coverage for dcsr_d fields
+      dut.u_ibex_core.cs_registers_i.dcsr_d_xdebugver_cg_h.sample();
+      // Sampling coverage for mstatus register
+      dut.u_ibex_core.cs_registers_i.m_status_reg_cg_h.sample();
+      // Sampling coverage for CPU control register field
+      dut.u_ibex_core.cs_registers_i.cpu_ctrl_cg_h.sample();
+      // Sampling coverage for CPU control register field
+      dut.u_ibex_core.wb_stage_i.wb_instr_type_cg_h.sample();
+      // Sampling coverage for regfile write data selection
+      dut.u_ibex_core.id_stage_i.decoder_i.rf_wd_sel_cg_h.sample();
+      // Sampling coverage for pc mux selection
+      dut.u_ibex_core.id_stage_i.pc_mux_cg_h.sample();
+      // Sampling coverage for exception pc mux selection
+      dut.u_ibex_core.id_stage_i.exc_pc_mux_cg_h.sample();
+      // Sampling coverage for interrupt signals
+      dut.u_ibex_core.id_stage_i.irqs_cg_h.sample();
+      // Sampling coverage for exception causes
+      dut.u_ibex_core.id_stage_i.exc_cause_cg_h.sample();
+      // Sampling coverage for debug causes
+      dut.u_ibex_core.id_stage_i.debug_cause_cg_h.sample();
+      // Sampling coverage for csr register
+      dut.u_ibex_core.cs_registers_i.csr_num_cg_h.sample();
+      // Sampling coverage for floating point rounding modes
+      dut.u_ibex_core.id_stage_i.decoder_i.fpu_round_mode_cg_h.sample();
+      // Sampling coverage for floating point status flags
+      dut.u_ibex_core.cs_registers_i.fp_status_cg_h.sample();
+      // Sampling coverage for Dummy instruction type
+      //dut.u_ibex_core.if_stage_i.dummy_instr_i.dummy_instr_type_cg_h.sample();
+      // Sampling coverage for compressed instruction type
+      dut.u_ibex_core.if_stage_i.compressed_decoder_i.compressed_instruction_cg_h.sample();
     `endif
   end
 
