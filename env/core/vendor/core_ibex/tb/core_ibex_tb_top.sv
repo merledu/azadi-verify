@@ -250,6 +250,8 @@ module core_ibex_tb_top;
       dut.u_ibex_core.cs_registers_i.fp_status_cg_h.sample();
       // Sampling coverage for Dummy instruction type
       //dut.u_ibex_core.if_stage_i.dummy_instr_i.dummy_instr_type_cg_h.sample();
+      // Sampling coverage for compressed instruction type
+      dut.u_ibex_core.if_stage_i.compressed_decoder_i.compressed_instruction_cg_h.sample();
     `endif
   end
 
